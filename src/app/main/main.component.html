@@ -1,0 +1,29 @@
+<div class="main">
+  <div class="myContainer">
+    <button mz-button large='true' routerLink='ranking'>
+      <span class="mdi mdi-access-point"></span>
+      Classement
+    </button>
+    <mz-dropdown 
+      [id]="'dropdown-demo'"
+      [align]="'left'"
+      [belowOrigin]="false"
+      [constrainWidth]="true"
+      [dropdownButtonId]="'btn-dropdown-demo'"
+      [gutter]="true"
+      [hover]="false"
+      [inDuration]="300"
+      [outDuration]="300"
+      [stopPropagation]="true">
+      <span *ngFor="let player of initplayers">
+        <mz-dropdown-item ><a routerLink='player/{{player.id}}'>{{player.firstname}}</a></mz-dropdown-item>
+        <mz-dropdown-divider></mz-dropdown-divider>
+      </span>
+    </mz-dropdown>
+
+    <a mz-button id="btn-dropdown-demo" href="#" large='true'>
+      <span class="mdi mdi-gamepad"></span>
+      Joueur
+    </a>
+  </div>
+</div>
