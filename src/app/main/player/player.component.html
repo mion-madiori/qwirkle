@@ -4,19 +4,19 @@
       - {{player.firstname}} {{player.lastname}} -
     </mz-card-title>
     <mz-card-content>
-      <mz-input-container>
-        <input mz-input [label]="'Score'" [validate]="true" [dataError]="'score invalide!'" [dataSuccess]="'score valide ;)'"
-          id="score-input" length="3" type="number">
-      </mz-input-container>
-
-      <div class="buttons">
-        <button mz-button large='true'>
-          Ajouter
-        </button>
-        <button mz-button class="red">
-          Enlever
-        </button>
-      </div>
+        <mz-input-container>
+          <input mz-input [label]="'Score'" [validate]="true" [dataError]="'score invalide!'" [dataSuccess]="'score valide ;)'"
+            id="score-input" length="3" type="number" [(ngModel)]='score' min="0">
+        </mz-input-container>
+  
+        <div class="buttons">
+          <button mz-button large='true' id="add" (click)="submit(true)">
+            Ajouter
+          </button>
+          <button mz-button class="red" id="remove" (click)="submit(false)">
+            Enlever
+          </button>
+        </div>
     </mz-card-content>
   </mz-card>
 </div>

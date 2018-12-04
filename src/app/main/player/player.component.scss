@@ -12,10 +12,17 @@
         padding: 10px;
 
         .buttons {
-            height: 200px;
+            height: 170px;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+
+        }
+        #add{
+            height: 100px;
+        }
+        #remove{
+
         }
     }
 }

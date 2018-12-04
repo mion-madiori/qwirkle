@@ -17,6 +17,8 @@ export class PlayerComponent implements OnInit {
     score: 0
   };
 
+  score: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private httpService: HttpService
@@ -30,6 +32,21 @@ export class PlayerComponent implements OnInit {
         this.player = player;
       })
     })
+  }
+
+  submit(operator: true){
+
+    if(this.score > 0){
+      if(operator){
+        this.player.score += this.score;
+      } else {
+        this.player.score -= this.score;
+      }
+    }
+    
+    
+
+    this.score = 0;
   }
 
 }
