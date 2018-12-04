@@ -1,3 +1,22 @@
 <div class="player">
-  {{player.id}} - {{player.firstname}} - {{player.lastname}}
+  <mz-card [horizontal]="true" [hoverable]="true">>
+    <mz-card-title>
+      - {{player.firstname}} {{player.lastname}} -
+    </mz-card-title>
+    <mz-card-content>
+      <mz-input-container>
+        <input mz-input [label]="'Score'" [validate]="true" [dataError]="'score invalide!'" [dataSuccess]="'score valide ;)'"
+          id="score-input" length="3" type="number">
+      </mz-input-container>
+
+      <div class="buttons">
+        <button mz-button large='true'>
+          Ajouter
+        </button>
+        <button mz-button class="red">
+          Enlever
+        </button>
+      </div>
+    </mz-card-content>
+  </mz-card>
 </div>

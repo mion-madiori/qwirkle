@@ -13,13 +13,13 @@ export class HttpService {
   ) { }
 
   getPlayers(): Observable<Array<Player>> {
-    return this.http.get<Array<Player>>('HTTP://localhost:4200/assets/data/players.json');
+    return this.http.get<Array<Player>>('./assets/data/players.json');
   }
 
   getOnePlayer(id: any): Promise<Player> {
     return new Promise((resolve, reject) => {
       if (id > -1) {
-        this.http.get<Array<Player>>('HTTP://localhost:4200/assets/data/players.json').subscribe((data: any) => {
+        this.http.get<Array<Player>>('./assets/data/players.json').subscribe((data: any) => {
           
           data.players.forEach(player => {
             

@@ -7,6 +7,8 @@ import {
   MzButtonModule,
   MzNavbarModule,
   MzDropdownModule,
+  MzInputModule,
+  MzCardModule,
 } from 'ngx-materialize';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +34,8 @@ import { HttpService } from './service/http.service';
     MzButtonModule,
     MzNavbarModule,
     MzDropdownModule, 
+    MzInputModule,
+    MzCardModule,
   ],
   providers: [
     HttpService
