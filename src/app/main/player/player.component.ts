@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
 import { Player } from 'src/app/model/player';
+import { IoService } from 'src/app/service/io.service';
 
 @Component({
   selector: 'app-player',
@@ -21,14 +22,15 @@ export class PlayerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private ioService: IoService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
       this.httpService.getOnePlayer(param['id']).then(player => {
         console.log(player);
-        
+        this.ioService.sendPlayer(player);
         this.player = player;
       })
     })

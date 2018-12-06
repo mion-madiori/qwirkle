@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IoService } from 'src/app/service/io.service';
-import { Subject} from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ranking',
@@ -10,17 +8,24 @@ import { map } from 'rxjs/operators';
 })
 export class RankingComponent implements OnInit {
   
-  messages: Subject<any>;
+  messages;
 
   constructor(
     private ioService: IoService
   ) { 
-    ioService.getMessage();
+    ioService.getMessage().subscribe(data => {
+      this.messages = data;
+      console.log(data);
+      
+    });
+    ioService.getListPlayer().subscribe(data => {
+      console.log(data);
+      
+    });
   }
 
   ngOnInit() {
     
-    this.ioService.sendMessage();
   }
 
 }
