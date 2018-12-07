@@ -1,7 +1,7 @@
 <div class="player">
   <mz-card [horizontal]="true" [hoverable]="true">>
     <mz-card-title>
-      - {{player.firstname}} {{player.lastname}} -
+      - {{player.firstname | titlecase}} {{player.lastname | uppercase}} -
     </mz-card-title>
     <mz-card-content>
         <mz-input-container>

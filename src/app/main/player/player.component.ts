@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
 import { Player } from 'src/app/model/player';
 import { IoService } from 'src/app/service/io.service';
+import { MzToastService } from 'ngx-materialize';
 
 @Component({
   selector: 'app-player',
@@ -23,8 +24,13 @@ export class PlayerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private httpService: HttpService,
-    private ioService: IoService
-  ) { }
+    private ioService: IoService,
+    private toastService: MzToastService
+  ) {
+    ioService.getPlayerAdded().subscribe(data => {
+      toastService.show(`${data.firstname} ${data.lastname} est arrivé(e)!!! ^^`, 3000);
+    });
+  }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
@@ -34,6 +40,12 @@ export class PlayerComponent implements OnInit {
         this.player = player;
       })
     })
+  }
+  
+  canDeactivate(){
+    alert('quitter');
+    this.ioService.destroyPlayer(this.player);
+    return true;
   }
 
   submit(operator: true){

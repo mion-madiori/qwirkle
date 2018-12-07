@@ -15,19 +15,52 @@ io.on('connection', socket => {
     socket.on('addPlayer', player => {
         console.log(`Un joueur s'est ajouté.`);
         for (let i = 0; i < listPlayers.length; i++) {
-            console.log('boucle');
-            
-            if(player === listPlayers[i]){
+
+            if (JSON.stringify(player) === JSON.stringify(listPlayers[i])) {
+
+                console.log(`${player.firstname} ${player.lastname} existe déjà!`);
+
                 return;
             }
-            
         }
-    
-            
+
+        io.emit('playerAdded', {
+            firstname: player.firstname,
+            lastname: player.lastname
+        });
+
         listPlayers.push(player);
-    
-        io.emit('listPlayer', listPlayers);
+
+        io.emit('sendPlayers', listPlayers);
     });
+
+    socket.on('setScore', player => {
+        for (let i = 0; i < listPlayers.length; i++) {
+            if (player.id === listPlayers[i].id) {
+                listPlayers[i].score += player.score;
+                return;
+            };
+        }
+        socket.emit('sendPlayers', listPlayers);
+    })
+
+    socket.on('getPlayers', () => {
+        console.log('ranking récupération joueurs');
+
+        socket.emit('sendPlayers', listPlayers);
+    })
+
+    socket.on('destroyPlayer', player => {
+        for (let i = 0; i < listPlayers.length; i++) {
+            if (JSON.stringify(listPlayers[i]) === JSON.stringify(player)) {
+                listPlayers.splice(i, 1);
+                return;
+            }
+        }
+
+        console.log(`${player.firstname} ${player.lastname} a quitté le jeu`);
+
+    })
 });
 
 http.listen(3000, () => {

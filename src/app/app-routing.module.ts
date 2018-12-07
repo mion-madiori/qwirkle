@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { RankingComponent } from './main/ranking/ranking.component';
 import { PlayerComponent } from './main/player/player.component';
+import { QuitGuard } from './guard/quit.guard';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'ranking', component: RankingComponent},
-  {path: 'player/:id', component: PlayerComponent}
+  {path: 'player/:id', component: PlayerComponent, canDeactivate: [QuitGuard]}
 ];
 
 @NgModule({

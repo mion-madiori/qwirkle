@@ -10,6 +10,8 @@ import {
   MzDropdownModule,
   MzInputModule,
   MzCardModule,
+  MzToastModule,
+  MzCollectionModule ,
 } from 'ngx-materialize';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +41,8 @@ import { IoService } from './service/io.service';
     MzDropdownModule, 
     MzInputModule,
     MzCardModule,
+    MzToastModule,
+    MzCollectionModule ,
   ],
   providers: [
     HttpService,
