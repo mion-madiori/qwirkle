@@ -1,0 +1,13 @@
+<div class="game">
+    <div class="player-component">
+        <app-player-component *ngFor="let value of valueInArray" (update)='onUpdate($event)'></app-player-component>
+    </div>
+    <div class="ranking">
+        <mz-collection>
+            <mz-collection-item *ngFor="let player of listPlayers">
+                {{ player.firstname | titlecase }} {{ player.lastname | uppercase }}
+                <div mz-secondary-content>{{player.score}}</div>
+            </mz-collection-item>
+        </mz-collection>
+    </div>
+</div>

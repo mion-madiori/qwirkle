@@ -1,0 +1,29 @@
+<div class="player-component">
+  <mz-card [horizontal]="true" [hoverable]="true">
+
+    <mz-card-title>
+      <mz-select-container *ngIf="player.id === -1">
+        <select mz-select id="options-select" [label]="'Sélection du joueur'" [placeholder]="'Joueurs'" (change)='onChange($event.target.value)'>
+          <option *ngFor="let player of playersAvailable" [value]="player.id">{{player.firstname}} {{player.lastname}}</option>
+        </select>
+      </mz-select-container>
+      <span>
+        {{player.firstname | titlecase}} {{player.lastname | uppercase}}
+      </span>
+    </mz-card-title>
+    <mz-card-content *ngIf="player.id !== -1">
+      <mz-input-container>
+        <input mz-input [label]="'score'" min="0" 
+          id="score-input" length="3" type="number" [(ngModel)]='score'>
+      </mz-input-container>
+      <span class="operation">
+        <button mz-button float='true' large='true' (click)="updateScore(false)">
+          <span class="mdi mdi-36px mdi-minus"></span>
+        </button>
+        <button mz-button float='true' large='true' (click)="updateScore(true)">
+          <span class="mdi mdi-36px mdi-plus"></span>
+        </button>
+      </span>
+    </mz-card-content>
+  </mz-card>
+</div>

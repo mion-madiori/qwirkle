@@ -50,4 +50,8 @@ export class IoService {
   destroyPlayer(player: Player){
     this.socket.emit('destroyPlayer', player);
   }
+
+  updateScore(score: Player){
+    this.socket.emit('setScore', score);
+  }
 }

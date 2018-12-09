@@ -37,11 +37,12 @@ io.on('connection', socket => {
     socket.on('setScore', player => {
         for (let i = 0; i < listPlayers.length; i++) {
             if (player.id === listPlayers[i].id) {
-                listPlayers[i].score += player.score;
+                listPlayers[i] = player;
+                console.log(`${player.firstname} ${player.lastname} a un score de ${player.score}`);
+                io.emit('sendPlayers', listPlayers);
                 return;
             };
         }
-        socket.emit('sendPlayers', listPlayers);
     })
 
     socket.on('getPlayers', () => {

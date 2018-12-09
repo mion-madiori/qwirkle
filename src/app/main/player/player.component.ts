@@ -43,7 +43,6 @@ export class PlayerComponent implements OnInit {
   }
   
   canDeactivate(){
-    alert('quitter');
     this.ioService.destroyPlayer(this.player);
     return true;
   }
@@ -58,7 +57,7 @@ export class PlayerComponent implements OnInit {
       }
     }
     
-    
+    this.ioService.updateScore(this.player);
 
     this.score = 0;
   }

@@ -1,0 +1,16 @@
+.game{
+    display: flex;
+    justify-content: space-between;
+    .player-component{
+        width: 1000px;
+        display: flex;
+        app-player-component{
+            margin-left: 20px;
+            width: 300px;
+        }
+    }
+    .ranking{
+        width: 250px;
+        margin-right: 20px;
+    }
+}

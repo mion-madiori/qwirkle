@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IoService } from 'src/app/service/io.service';
 import { Player } from 'src/app/model/player';
+import { Utils } from 'src/app/utils';
 
 @Component({
   selector: 'app-ranking',
@@ -17,7 +18,7 @@ export class RankingComponent implements OnInit {
     ioService.getListPlayer().subscribe(data => {
       this.listPlayers = data
       console.log(this.listPlayers);
-      
+      this.listPlayers.sort(Utils.compare);
     });
   }
 
