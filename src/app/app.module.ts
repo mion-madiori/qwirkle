@@ -20,10 +20,11 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { RankingComponent } from './main/ranking/ranking.component';
 import { PlayerComponent } from './main/player/player.component';
-import { HttpService } from './service/http.service';
-import { IoService } from './service/io.service';
 import { GameComponent } from './main/game/game.component';
 import { PlayerComponentComponent } from './main/game/player-component/player-component.component';
+import { HttpService } from './service/http.service';
+import { IoService } from './service/io.service';
+import { ErrorEventService } from './service/error-event.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PlayerComponentComponent } from './main/game/player-component/player-co
   ],
   providers: [
     HttpService,
-    IoService
+    IoService,
+    ErrorEventService
   ],
   bootstrap: [AppComponent]
 })
