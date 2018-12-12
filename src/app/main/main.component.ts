@@ -4,6 +4,7 @@ import { HttpService } from '../service/http.service';
 import { ErrorEventService } from '../service/error-event.service';
 import { MzToastService } from 'ngx-materialize';
 import { Subscription } from 'rxjs';
+import { IoService } from '../service/io.service';
 
 @Component({
   selector: 'app-main',
@@ -18,30 +19,41 @@ export class MainComponent implements OnInit, OnDestroy {
   connectSubscription: Subscription;
   disconnectSubscription: Subscription;
 
+  isDisabled: boolean = true;
+
   constructor(
     private httpService: HttpService,
     private errorService: ErrorEventService,
-    private toastService: MzToastService
+    private toastService: MzToastService,
+    private ioService: IoService
   ) {
+    ioService.initSocket();
+
     this.errorSubscription = errorService.connectEvent$.subscribe(value => {
       console.log('connect: ' + value);
       
-      if (value)
+      if (value){
         this.toastService.show('Connexion établie', 4000, 'green');
+        this.isDisabled = false;
+      }
     });
 
     this.disconnectSubscription = errorService.disconnectEvent$.subscribe(value => {
       console.log('disconnect: ' + value);
       
-      if (value)
+      if (value){
         this.toastService.show('Déconnexion du serveur', 4000, 'yellow');
+        this.isDisabled = true;
+      }
     });
 
     this.errorSubscription = errorService.errorConnectEvent$.subscribe(value => {
       console.log('error: ' + value);
       
-      if (value)
+      if (value){
         this.toastService.show('Erreur de connexion', 4000, 'red');
+        this.isDisabled = true;
+      }
     })
   }
 
@@ -52,9 +64,9 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    // this.errorSubscription.unsubscribe();
-    // this.disconnectSubscription.unsubscribe();
-    // this.connectSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.disconnectSubscription.unsubscribe();
+    this.connectSubscription.unsubscribe();
   }
 
 }

@@ -1,14 +1,14 @@
 <div class="main">
   <div class="myContainer">
     <span class="button">
-      <button mz-button large='true' routerLink='ranking'>
+      <button mz-button large='true' routerLink='ranking' [disabled]='isDisabled'>
         <span class="mdi mdi-access-point"></span>
         Classement
       </button>
     </span>
 
     <span class="button">
-      <a mz-button id="btn-dropdown-player" href="#" large='true'>
+      <a mz-button id="btn-dropdown-player" href="#" large='true' [disabled]='isDisabled'>
         <span class="mdi mdi-gamepad"></span>
         Joueur
       </a>
