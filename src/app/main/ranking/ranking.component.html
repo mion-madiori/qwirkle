@@ -1,10 +1,12 @@
 <div class="ranking">
   <div class="list">
-    <mz-collection>
-      <mz-collection-item *ngFor="let player of listPlayers">
+    <div class="item" *ngFor="let player of listPlayers">
+      <div class="name">
         {{ player.firstname | titlecase }} {{ player.lastname | uppercase }}
-        <div mz-secondary-content>{{player.score}}</div>
-      </mz-collection-item>
-    </mz-collection>
+      </div>
+      <div class="score">
+        {{player.score}}
+      </div>
+    </div>
   </div>
 </div>

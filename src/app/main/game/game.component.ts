@@ -30,10 +30,14 @@ export class GameComponent implements OnInit {
 
   onUpdate(player: Player){
     console.log(player);
+
     if(!this.listPlayers.includes(player)){
+      console.log('non existant');
       this.listPlayers.push(player);
       return;
     } else {
+      console.log('existant');
+      
       for (let i = 0; i < this.listPlayers.length; i++) {
         if(this.listPlayers[i] === player){
           this.listPlayers[i] = player;

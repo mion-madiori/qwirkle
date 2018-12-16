@@ -13,7 +13,7 @@ io.on('connection', socket => {
     socket.emit('sendPlayers', listPlayers);
 
     socket.on('addPlayer', player => {
-        console.log(`Un joueur s'est ajouté.`);
+        console.log(`${player.firstname} ${player.lastname} s'est ajouté(e).`);
         for (let i = 0; i < listPlayers.length; i++) {
 
             if (JSON.stringify(player) === JSON.stringify(listPlayers[i])) {
@@ -29,7 +29,11 @@ io.on('connection', socket => {
             lastname: player.lastname
         });
 
-        listPlayers.push(player);
+        if(listPlayers.length < 4){
+            listPlayers.push(player);
+        } else {
+            console.log('nombre maximum de joueurs atteind...');
+        }
 
         io.emit('sendPlayers', listPlayers);
     });
@@ -52,9 +56,11 @@ io.on('connection', socket => {
     })
 
     socket.on('destroyPlayer', player => {
+        console.log(`${player.firstname} ${player.lastname} a quitté le jeu.`)
         for (let i = 0; i < listPlayers.length; i++) {
             if (JSON.stringify(listPlayers[i]) === JSON.stringify(player)) {
                 listPlayers.splice(i, 1);
+                io.emit('sendPlayers', listPlayers);
                 return;
             }
         }

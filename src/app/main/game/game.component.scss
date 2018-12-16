@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     .player-component{
-        width: 1000px;
         display: flex;
+        flex-wrap: wrap;
         app-player-component{
             margin-left: 20px;
             width: 300px;

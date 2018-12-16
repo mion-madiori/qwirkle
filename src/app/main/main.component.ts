@@ -19,6 +19,8 @@ export class MainComponent implements OnInit, OnDestroy {
   connectSubscription: Subscription;
   disconnectSubscription: Subscription;
 
+  isError: boolean = false;
+
   isDisabled: boolean = true;
 
   constructor(
@@ -26,19 +28,24 @@ export class MainComponent implements OnInit, OnDestroy {
     private errorService: ErrorEventService,
     private toastService: MzToastService,
     private ioService: IoService
-  ) {
-    ioService.initSocket();
+  ) { }
 
-    this.errorSubscription = errorService.connectEvent$.subscribe(value => {
-      console.log('connect: ' + value);
-      
+  ngOnInit() {
+    this.httpService.getPlayers().subscribe((players: any) => {
+      this.initplayers = players.players;
+    })
+
+    this.ioService.initSocket();
+
+    this.errorSubscription = this.errorService.connectEvent$.subscribe(value => {
       if (value){
         this.toastService.show('Connexion établie', 4000, 'green');
         this.isDisabled = false;
+        this.isError = false;
       }
     });
 
-    this.disconnectSubscription = errorService.disconnectEvent$.subscribe(value => {
+    this.disconnectSubscription = this.errorService.disconnectEvent$.subscribe(value => {
       console.log('disconnect: ' + value);
       
       if (value){
@@ -47,26 +54,23 @@ export class MainComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.errorSubscription = errorService.errorConnectEvent$.subscribe(value => {
+    this.errorSubscription = this.errorService.errorConnectEvent$.subscribe(value => {
       console.log('error: ' + value);
       
       if (value){
-        this.toastService.show('Erreur de connexion', 4000, 'red');
-        this.isDisabled = true;
+        if(!this.isError){
+          this.toastService.show('Erreur de connexion', 4000, 'red');
+          this.isDisabled = true;
+          this.isError = true;
+        }
       }
     })
   }
 
-  ngOnInit() {
-    this.httpService.getPlayers().subscribe((players: any) => {
-      this.initplayers = players.players;
-    })
-  }
-
   ngOnDestroy(){
-    this.errorSubscription.unsubscribe();
-    this.disconnectSubscription.unsubscribe();
-    this.connectSubscription.unsubscribe();
+    // this.errorSubscription.unsubscribe();
+    // this.disconnectSubscription.unsubscribe();
+    // this.connectSubscription.unsubscribe();
   }
 
 }

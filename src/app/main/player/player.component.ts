@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
 import { Player } from 'src/app/model/player';
@@ -45,6 +45,16 @@ export class PlayerComponent implements OnInit {
   canDeactivate(){
     this.ioService.destroyPlayer(this.player);
     return true;
+  }
+
+  @HostListener('window:unload', [ '$event' ])
+  unloadHandler(event){
+
+  }
+
+  @HostListener('window:beforeunload', [ '$event' ])
+  beforeUnloadHander(event) {
+    this.ioService.destroyPlayer(this.player);
   }
 
   submit(operator: true){

@@ -4,7 +4,7 @@ import { Observable, observable } from 'rxjs';
 import { Player } from '../model/player';
 import { ErrorEventService } from './error-event.service';
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://192.168.0.3:3000';
 
 @Injectable({
   providedIn: 'root'
