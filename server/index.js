@@ -8,6 +8,8 @@ let listPlayers = [];
 
 io.on('connection', socket => {
     console.log(`un utilisateur s'est connecté`);
+
+    let isMax = false;
     socket.emit('messageSending', 'coucou du serveur');
 
     socket.emit('sendPlayers', listPlayers);
@@ -24,7 +26,7 @@ io.on('connection', socket => {
             }
         }
 
-        io.emit('playerAdded', {
+        socket.broadcast.emit('playerAdded', {
             firstname: player.firstname,
             lastname: player.lastname
         });
@@ -33,6 +35,8 @@ io.on('connection', socket => {
             listPlayers.push(player);
         } else {
             console.log('nombre maximum de joueurs atteind...');
+            isMax = true;
+            io.emit('isMax', isMax);
         }
 
         io.emit('sendPlayers', listPlayers);
@@ -61,12 +65,21 @@ io.on('connection', socket => {
             if (JSON.stringify(listPlayers[i]) === JSON.stringify(player)) {
                 listPlayers.splice(i, 1);
                 io.emit('sendPlayers', listPlayers);
+                if(listPlayers.length < 4){
+                    isMax = false;
+                    io.emit('isMax', false);
+                }
                 return;
             }
         }
 
         console.log(`${player.firstname} ${player.lastname} a quitté le jeu`);
 
+    })
+
+    socket.on('clear', () => {
+        listPlayers = [];
+        socket.emit('sendPlayers', listPlayers);
     })
 });
 

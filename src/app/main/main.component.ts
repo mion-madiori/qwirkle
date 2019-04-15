@@ -18,10 +18,12 @@ export class MainComponent implements OnInit, OnDestroy {
   errorSubscription: Subscription;
   connectSubscription: Subscription;
   disconnectSubscription: Subscription;
+  maxPlayerSubscription: Subscription;
 
   isError: boolean = false;
 
-  isDisabled: boolean = true;
+  isRankingPlayerDisabled: boolean = true;
+  isPlayerDisabled: boolean = true;
 
   constructor(
     private httpService: HttpService,
@@ -40,7 +42,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.errorSubscription = this.errorService.connectEvent$.subscribe(value => {
       if (value){
         this.toastService.show('Connexion établie', 4000, 'green');
-        this.isDisabled = false;
+        this.isRankingPlayerDisabled = false;
         this.isError = false;
       }
     });
@@ -50,7 +52,7 @@ export class MainComponent implements OnInit, OnDestroy {
       
       if (value){
         this.toastService.show('Déconnexion du serveur', 4000, 'yellow');
-        this.isDisabled = true;
+        this.isRankingPlayerDisabled = true;
       }
     });
 
@@ -60,9 +62,17 @@ export class MainComponent implements OnInit, OnDestroy {
       if (value){
         if(!this.isError){
           this.toastService.show('Erreur de connexion', 4000, 'red');
-          this.isDisabled = true;
+          this.isRankingPlayerDisabled = true;
           this.isError = true;
         }
+      }
+    })
+
+    this.maxPlayerSubscription = this.errorService.maxPlayerConnectEvent$.subscribe(value => {
+      console.log('max: ' + value);
+      
+      if(value){
+        this.toastService.show('Nombre maximum de joueurs atteind.', 4000, 'red');
       }
     })
   }

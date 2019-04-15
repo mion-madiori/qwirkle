@@ -32,6 +32,13 @@ export class IoService {
       console.warn('Connexion au serveur interrompue.');
       errorService.sendDisconnectEvent(true);
     }) 
+
+    this.socket.on('isMax', (value: boolean) => {
+      if(value){
+        console.warn('Nombre de joueur maximum atteind.');
+        errorService.sendMaxPlayer(true);
+      }
+    })
   }
 
   initSocket() {
@@ -51,6 +58,7 @@ export class IoService {
       })
     })
   }
+
   getPlayerAdded(): Observable<any> {
     return new Observable(observer => {
       this.socket.on('playerAdded', data => {
@@ -69,5 +77,19 @@ export class IoService {
 
   updateScore(score: Player) {
     this.socket.emit('setScore', score);
+  }
+
+  spaceAvailable(): Observable<boolean>{
+    return new Observable<boolean>(observer => {
+      this.socket.on('isMax', data => {
+        console.log(data);
+        
+        observer.next(data);
+      })
+    })
+  }
+
+  clearGame() {
+    this.socket.emit('clear');
   }
 }

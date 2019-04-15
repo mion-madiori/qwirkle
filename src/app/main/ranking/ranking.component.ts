@@ -26,4 +26,8 @@ export class RankingComponent implements OnInit {
     this.ioService.getListPlayerOnStart();
   }
 
+  clear(){
+    this.ioService.clearGame();
+  }
+
 }
