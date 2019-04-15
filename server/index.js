@@ -80,6 +80,7 @@ io.on('connection', socket => {
     socket.on('clear', () => {
         listPlayers = [];
         socket.emit('sendPlayers', listPlayers);
+        socket.emit('clear');
     })
 });
 

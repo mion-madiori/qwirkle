@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Player } from '../model/player';
 import { ErrorEventService } from './error-event.service';
 
-const SERVER_URL = 'http://192.168.0.3:3000';
+// const SERVER_URL = 'http://192.168.0.3:3000';
+const SERVER_URL = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,14 @@ export class IoService {
         console.log(data);
         
         observer.next(data);
+      })
+    })
+  }
+
+  clear(): Observable<any>{
+    return new Observable<any>(observer => {
+      this.socket.on('clear', data => {
+        observer.next(data)
       })
     })
   }

@@ -30,6 +30,9 @@ export class PlayerComponent implements OnInit {
     ioService.getPlayerAdded().subscribe(data => {
       toastService.show(`${data.firstname} ${data.lastname} est arrivé(e)!!! ^^`, 3000);
     });
+    ioService.clear().subscribe(data => {
+      toastService.show(`Partie terminée`, 3000);
+    })
   }
 
   ngOnInit() {
