@@ -1,4 +1,4 @@
-FROM node:latest as builder
+FROM arm64v8/node:11.15.0-alpine as builder
 
 COPY package.json ./
 
