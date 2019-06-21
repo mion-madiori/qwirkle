@@ -1,6 +1,6 @@
 FROM node:latest as builder
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
