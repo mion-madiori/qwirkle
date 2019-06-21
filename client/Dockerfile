@@ -10,6 +10,7 @@ WORKDIR /ng-app
 
 COPY . .
 
+RUN $(npm bin)/npm rebuild --force
 RUN $(npm bin)/ng build --prod=true
 
 FROM nginx:latest
