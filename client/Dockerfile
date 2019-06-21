@@ -1,4 +1,4 @@
-FROM node:9-alpine as builder
+FROM node:10.16.0-stretch-slim as builder
 
 COPY package.json ./
 
