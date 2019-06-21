@@ -60,7 +60,7 @@ export class PlayerComponent implements OnInit {
     this.ioService.destroyPlayer(this.player);
   }
 
-  submit(operator: true){
+  submit(operator: boolean){
 
     if(this.score > 0){
       if(operator){

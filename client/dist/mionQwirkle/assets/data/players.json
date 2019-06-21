@@ -1,0 +1,10 @@
+{
+    "players": [
+        {"id": 0, "firstname": "vincent", "lastname": "crombez", "score": 0},
+        {"id": 1, "firstname": "céline", "lastname": "gregoire", "score": 0},
+        {"id": 2, "firstname": "emy", "lastname": "crombez", "score": 0},
+        {"id": 3, "firstname": "owen", "lastname": "crombez", "score": 0},
+        {"id": 4, "firstname": "christophe", "lastname": "lefloch", "score": 0},
+        {"id": 5, "firstname": "aurore", "lastname": "lefloch", "score": 0}
+    ]
+}
