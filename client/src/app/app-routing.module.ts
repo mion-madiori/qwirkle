@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './main/main.component';
-import { RankingComponent } from './main/ranking/ranking.component';
-import { PlayerComponent } from './main/player/player.component';
+import { MainQwirkleComponent } from './qwirkle/main/main-qwirkle.component';
+import { RankingComponent } from './qwirkle/main/ranking/ranking.component';
+import { PlayerComponent } from './qwirkle/main/player/player.component';
 import { QuitGuard } from './guard/quit.guard';
-import { GameComponent } from './main/game/game.component';
+import { GameComponent } from './qwirkle/main/game/game.component';
+import { MainComponent } from './main/main.component';
+import { MainYamComponent } from './yam/main-yam/main-yam.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'ranking', component: RankingComponent},
-  {path: 'allinone/:numbPlayers', component: GameComponent},
-  {path: 'player/:id', component: PlayerComponent, canDeactivate: [QuitGuard]}
+  {path: 'qwirkle', component: MainQwirkleComponent},
+  {path: 'yam', component: MainYamComponent},
+  {path: 'qwirkle/ranking', component: RankingComponent},
+  {path: 'qwirkle/allinone/:numbPlayers', component: GameComponent},
+  {path: 'qwirkle/player/:id', component: PlayerComponent, canDeactivate: [QuitGuard]}
 ];
 
 @NgModule({

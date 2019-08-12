@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PlayerComponent } from '../main/player/player.component';
+import { PlayerComponent } from '../qwirkle/main/player/player.component';
 
 export interface CanComponentDeactivate {
   canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;

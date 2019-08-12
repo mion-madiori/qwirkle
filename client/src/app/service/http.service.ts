@@ -20,11 +20,11 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       if (id > -1) {
         this.http.get<Array<Player>>('./assets/data/players.json').subscribe((data: any) => {
-          
+
           data.players.forEach(player => {
-            
+
             if (player.id === +id) {
-              
+
               resolve(player);
             }
           });

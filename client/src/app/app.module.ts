@@ -11,29 +11,36 @@ import {
   MzInputModule,
   MzCardModule,
   MzToastModule,
-  MzCollectionModule ,
-  MzSelectModule ,
+  MzCollectionModule,
+  MzSelectModule,
+  MzCheckboxModule,
 } from 'ngx-materialize';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { RankingComponent } from './main/ranking/ranking.component';
-import { PlayerComponent } from './main/player/player.component';
-import { GameComponent } from './main/game/game.component';
-import { PlayerComponentComponent } from './main/game/player-component/player-component.component';
+import { MainQwirkleComponent } from './qwirkle/main/main-qwirkle.component';
+import { RankingComponent } from './qwirkle/main/ranking/ranking.component';
+import { PlayerComponent } from './qwirkle/main/player/player.component';
+import { GameComponent } from './qwirkle/main/game/game.component';
+import { PlayerComponentComponent } from './qwirkle/main/game/player-component/player-component.component';
 import { HttpService } from './service/http.service';
 import { IoService } from './service/io.service';
 import { ErrorEventService } from './service/error-event.service';
+import { MainComponent } from './main/main.component';
+import { MainYamComponent } from './yam/main-yam/main-yam.component';
+import { StepComponent } from './yam/main-yam/step/step.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    MainQwirkleComponent,
     RankingComponent,
     PlayerComponent,
     GameComponent,
-    PlayerComponentComponent
+    PlayerComponentComponent,
+    MainYamComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,
@@ -44,12 +51,13 @@ import { ErrorEventService } from './service/error-event.service';
 
     MzButtonModule,
     MzNavbarModule,
-    MzDropdownModule, 
+    MzDropdownModule,
     MzInputModule,
     MzCardModule,
     MzToastModule,
     MzCollectionModule,
     MzSelectModule,
+    MzCheckboxModule,
   ],
   providers: [
     HttpService,

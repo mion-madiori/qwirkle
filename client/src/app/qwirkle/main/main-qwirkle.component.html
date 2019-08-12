@@ -1,0 +1,62 @@
+<div class="main-qwirkle">
+  <div class="myContainer">
+    <mz-card>
+      <mz-card-title>
+        <span class="mdi mdi-cellphone-android mdi-36px"></span>
+        <span class="mdi mdi-cellphone-android mdi-36px"></span>
+        <span class="mdi mdi-cellphone-android mdi-36px"></span>
+        <span class="mdi mdi-cellphone-android mdi-36px"></span>
+        <span class="mdi mdi-laptop mdi-36px"></span>
+      </mz-card-title>
+      <mz-card-content>
+        <span class="button">
+          <button mz-button large='true' routerLink='ranking' [disabled]='isRankingPlayerDisabled'>
+            <span class="mdi mdi-access-point"></span>
+            Classement
+          </button>
+        </span>
+
+        <span class="button">
+          <a mz-button id="btn-dropdown-player" href="#" large='true' [disabled]='isRankingPlayerDisabled'>
+            <span class="mdi mdi-gamepad"></span>
+            Joueur
+          </a>
+
+          <mz-dropdown [id]="'dropdown-player'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="true"
+            [dropdownButtonId]="'btn-dropdown-player'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300"
+            [stopPropagation]="true">
+            <span *ngFor="let player of initplayers">
+              <mz-dropdown-item><a routerLink='player/{{player.id}}'>{{player.firstname}}</a></mz-dropdown-item>
+              <mz-dropdown-divider></mz-dropdown-divider>
+            </span>
+          </mz-dropdown>
+        </span>
+      </mz-card-content>
+    </mz-card>
+
+    <mz-card>
+      <mz-card-title>
+        <span class="mdi mdi-laptop mdi-36px"></span>
+      </mz-card-title>
+      <mz-card-content>
+        <span class="button">
+          <a mz-button id="btn-dropdown-numbPlayers" href="#" large='true'>
+            <span class="mdi mdi-account-group"></span>
+            Tout-en-1
+          </a>
+
+          <mz-dropdown [id]="'dropdown-numbPlayers'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="true"
+            [dropdownButtonId]="'btn-dropdown-numbPlayers'" [gutter]="true" [hover]="false" [inDuration]="300"
+            [outDuration]="300" [stopPropagation]="true">
+            <mz-dropdown-item><a routerLink='allinone/2'>2 joueurs</a></mz-dropdown-item>
+            <mz-dropdown-divider></mz-dropdown-divider>
+            <mz-dropdown-item><a routerLink='allinone/3'>3 joueurs</a></mz-dropdown-item>
+            <mz-dropdown-divider></mz-dropdown-divider>
+            <mz-dropdown-item><a routerLink='allinone/4'>4 joueurs</a></mz-dropdown-item>
+          </mz-dropdown>
+        </span>
+      </mz-card-content>
+    </mz-card>
+
+  </div>
+</div>

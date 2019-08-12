@@ -1,0 +1,17 @@
+.step {
+    display: flex;
+    padding-left: 20px;
+
+    .player, .rule {
+        display: flex;
+        border: 1px solid black;
+        width: 160px;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .rule:first-child {
+
+        border-left: 1px solid black;
+    }
+}

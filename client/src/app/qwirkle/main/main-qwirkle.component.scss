@@ -1,0 +1,30 @@
+.main-qwirkle {
+    display: flex;
+    justify-content: space-around;
+
+    .myContainer {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        mz-card-title{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .button {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+.toastGreen{
+    background-color: green;
+}
+.toastRed{
+    background-color: red;
+}
+.toastYellow{
+    background-color: yellow;
+}

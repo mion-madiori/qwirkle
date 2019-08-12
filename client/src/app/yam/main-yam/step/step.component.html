@@ -1,0 +1,15 @@
+<div class="step">
+  <div class="rule">
+    règle {{rule}}
+  </div>
+  <div class="player" *ngFor="let player of players">
+    <mz-select-container>
+      <select mz-select id="options-select" label='Point' placeholder='Choisir' (change)='setPoint($event, player)'>
+        <option class="left circle" *ngFor="let point of points" value="{{point}}">{{point}}</option>
+      </select>
+    </mz-select-container>
+    <mz-checkbox-container>
+      <input mz-checkbox label='ok?' id="{{player.id}}" type="checkbox">
+    </mz-checkbox-container>
+  </div>
+</div>
